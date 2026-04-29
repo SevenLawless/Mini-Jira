@@ -1,38 +1,32 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-  const [health, setHealth] = useState(null);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4001/api/health")
-      .then((response) => {
-        setHealth(response.data);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-  }, []);
-
+function Home() {
   return (
     <main style={{ padding: "40px", fontFamily: "Arial" }}>
       <h1>Bug Tracker / Mini Jira</h1>
       <p>Frontend is running.</p>
 
-      <h2>Backend Health Check</h2>
-
-      {health && (
-        <pre>{JSON.stringify(health, null, 2)}</pre>
-      )}
-
-      {error && (
-        <p style={{ color: "red" }}>
-          Backend connection failed: {error}
-        </p>
-      )}
+      <p>
+        <Link to="/register">Register</Link> | <Link to="/login">Login</Link>
+      </p>
     </main>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
