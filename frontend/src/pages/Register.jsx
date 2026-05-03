@@ -37,60 +37,75 @@ function Register() {
   }
 
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>Create Account</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <br />
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Your name"
-          />
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="brand">
+          <div className="brand-mark"></div>
+          <span>Buggy</span>
         </div>
+      </header>
 
-        <br />
+      <main className="auth-page">
+        <section className="auth-card">
+          <div className="auth-card-header">
+            <div className="auth-icon">+</div>
+            <h1>Create account</h1>
+            <p>Start tracking bugs, projects, and team workspaces.</p>
+          </div>
 
-        <div>
-          <label>Email</label>
-          <br />
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="you@example.com"
-          />
-        </div>
+          <div className="auth-tabs">
+            <Link className="auth-tab" to="/login">
+              Sign In
+            </Link>
+            <div className="auth-tab active">Sign Up</div>
+          </div>
 
-        <br />
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label>Name</label>
+              <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Your name"
+              />
+            </div>
 
-        <div>
-          <label>Password</label>
-          <br />
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="At least 6 characters"
-          />
-        </div>
+            <div className="form-field">
+              <label>Email address</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+              />
+            </div>
 
-        <br />
+            <div className="form-field">
+              <label>Password</label>
+              <input
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="At least 6 characters"
+              />
+            </div>
 
-        <button type="submit">Register</button>
-      </form>
+            <button className="primary-button" type="submit">
+              Create Account
+            </button>
+          </form>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <div className="error-message">{error}</div>}
 
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </main>
+          <div className="auth-footer">
+            Already have an account? <Link to="/login">Sign in</Link>
+          </div>
+        </section>
+      </main>
+    </div>
   );
 }
 

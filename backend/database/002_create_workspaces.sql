@@ -1,20 +1,6 @@
-CREATE DATABASE bug_tracker_dev;
-
-
 USE bug_tracker_dev;
 
-
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
-  password_hash VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-
-CREATE TABLE workspaces (
+CREATE TABLE IF NOT EXISTS workspaces (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(150) NOT NULL,
   owner_id INT NOT NULL,
@@ -23,7 +9,7 @@ CREATE TABLE workspaces (
   FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE workspace_members (
+CREATE TABLE IF NOT EXISTS workspace_members (
   id INT AUTO_INCREMENT PRIMARY KEY,
   workspace_id INT NOT NULL,
   user_id INT NOT NULL,

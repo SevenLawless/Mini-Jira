@@ -5,6 +5,7 @@ require("dotenv").config();
 const db = require("./db");
 const authRoutes = require("./routes/authRoutes");
 const workspaceRoutes = require("./routes/workspaceRoutes");
+const projectRoutes = require("./routes/projectRoutes");
 
 const app = express();
 
@@ -13,9 +14,10 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/workspaces", workspaceRoutes);
+app.use("/api", projectRoutes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Bug Tracker API is running" });
+  res.json({ message: "Buggy API is running" });
 });
 
 app.get("/api/health", async (req, res) => {

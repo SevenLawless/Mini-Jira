@@ -36,47 +36,65 @@ function Login() {
   }
 
   return (
-    <main style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>Login</h1>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <br />
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="you@example.com"
-          />
+    <div className="app-shell">
+      <header className="app-header">
+        <div className="brand">
+          <div className="brand-mark"></div>
+          <span>Buggy</span>
         </div>
+      </header>
 
-        <br />
+      <main className="auth-page">
+        <section className="auth-card">
+          <div className="auth-card-header">
+            <div className="auth-icon">✓</div>
+            <h1>Welcome back</h1>
+            <p>Sign in to continue to your workspace.</p>
+          </div>
 
-        <div>
-          <label>Password</label>
-          <br />
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            placeholder="Your password"
-          />
-        </div>
+          <div className="auth-tabs">
+            <div className="auth-tab active">Sign In</div>
+            <Link className="auth-tab" to="/register">
+              Sign Up
+            </Link>
+          </div>
 
-        <br />
+          <form className="auth-form" onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label>Email address</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="you@example.com"
+              />
+            </div>
 
-        <button type="submit">Login</button>
-      </form>
+            <div className="form-field">
+              <label>Password</label>
+              <input
+                name="password"
+                type="password"
+                value={form.password}
+                onChange={handleChange}
+                placeholder="Your password"
+              />
+            </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+            <button className="primary-button" type="submit">
+              Sign In
+            </button>
+          </form>
 
-      <p>
-        No account yet? <Link to="/register">Register</Link>
-      </p>
-    </main>
+          {error && <div className="error-message">{error}</div>}
+
+          <div className="auth-footer">
+            No account yet? <Link to="/register">Create one</Link>
+          </div>
+        </section>
+      </main>
+    </div>
   );
 }
 
